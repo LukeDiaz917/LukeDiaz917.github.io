@@ -64,7 +64,7 @@ a:focus-visible, button:focus-visible {
 }
 .nav {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
   height: 68px;
 }
@@ -79,7 +79,7 @@ a:focus-visible, button:focus-visible {
 }
 .brand-mark svg { width: 18px; height: 18px; fill: var(--gold); }
 
-.nav-links { display: flex; gap: 1.4rem; justify-content: center; }
+.nav-links { display: flex; gap: 1.4rem; justify-content: flex-end; }
 .nav-links a {
   position: relative; padding: .25rem 0;
   font-size: var(--step--1); letter-spacing: .06em;
@@ -91,20 +91,6 @@ a:focus-visible, button:focus-visible {
   height: 1px; width: 0; background: var(--gold); transition: width .25s ease;
 }
 .nav-links a:hover::after { width: 100%; }
-
-.nav-cta { display: flex; justify-content: flex-end; }
-.btn {
-  display:inline-flex; align-items:center; gap:.6rem;
-  border: 1px solid var(--line); padding: .6rem 1rem;
-  border-radius: 999px;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 94%, transparent), var(--card));
-  box-shadow: var(--shadow);
-}
-.btn:hover {
-  border-color: color-mix(in oklab, var(--gold) 50%, var(--line));
-  transform: translateY(-1px); transition: transform .2s ease;
-}
-.btn .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 
 /* --- Hero --- */
 .hero { padding: 8vh 0 10vh; border-bottom: 1px solid var(--line); }
@@ -127,15 +113,6 @@ a:focus-visible, button:focus-visible {
   content: ""; position:absolute; inset:0;
   background: radial-gradient(1200px 400px at 80% 10%, rgba(200,167,93,.35), transparent 40%);
   pointer-events:none;
-}
-
-/* --- Trusted / Logos --- */
-.trust { padding: 4rem 0; border-bottom: 1px solid var(--line); }
-.logo-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2rem; opacity: .65; }
-.logo {
-  aspect-ratio: 3/1; border: 1px solid var(--line); border-radius: 10px;
-  display:grid; place-items:center;
-  font-size: .95rem; color: var(--muted); background: var(--card);
 }
 
 /* --- Services --- */
@@ -224,8 +201,8 @@ textarea { min-height: 140px; resize: vertical; }
 }
 @media (max-width: 640px) {
   .nav {
-    grid-template-columns: 1fr auto;
-    grid-template-areas: 'brand toggle' 'links links';
+    grid-template-columns: 1fr;
+    grid-template-areas: 'brand' 'links';
     height:auto; padding: .6rem 0; gap:.6rem;
   }
   .brand { grid-area: brand; }
@@ -233,7 +210,6 @@ textarea { min-height: 140px; resize: vertical; }
     grid-area: links; justify-content:flex-start;
     flex-wrap: wrap; gap: 1rem 1.25rem; padding-bottom: .4rem;
   }
-  .nav-cta { display:none; }
   .services { grid-template-columns: 1fr; }
   .logo-row { grid-template-columns: repeat(3,1fr); }
 }
