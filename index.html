@@ -3,112 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurique — Quiet Luxury</title>
+  <title>Aurique — Home</title>
+  <meta name="theme-color" content="#fafbfc">
+  <link rel="icon" 
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23fafbfc'/%3E%3Cpath d='M19 42 L32 12 L45 42' fill='none' stroke='%23a9c1e6' stroke-width='3'/%3E%3Ccircle cx='32' cy='42' r='3' fill='%23a9c1e6'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
-
-  <!-- Header -->
   <header class="site-header" role="banner">
     <nav class="container nav" aria-label="Primary">
-      <a href="#" class="brand" aria-label="Aurique home">
+      <a href="index.html" class="brand" aria-label="Aurique home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l6 10.5H6z"/></svg>
         </span>
         Aurique
       </a>
       <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#about">About Me</a>
-        <a href="#contact">Contact</a>
+        <a href="work.html">Work</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About Me</a>
+        <a href="contact.html">Contact</a>
       </div>
-      <!-- Removed the .nav-cta button -->
     </nav>
   </header>
 
   <main id="main">
-    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="stack" style="--space:1.25rem">
           <span class="kicker">Quiet Luxury, Made Simple</span>
           <h1>Bespoke digital experiences with an editorial calm.</h1>
-          <p class="lead">I craft minimal, high-end websites that whisper prestige—elevating your brand with considered typography, generous negative space, and details in champagne gold.</p>
+          <p class="lead">I craft minimal, high‑end websites that whisper prestige—blending careful typography, generous negative space, and powder‑blue accents.</p>
         </div>
-        <div class="hero-media" role="img" aria-label="Abstract, soft-toned editorial still life with hints of gold."></div>
+        <div class="hero-media">
+          <img src="exoskeleton.png" alt="Exoskeleton wrist and hand design">
+        </div>        
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section">
+    <section class="trust" aria-label="Trusted by">
+      <div class="container">
+        <div class="logo-row">
+          <div class="logo">Maison Sel</div>
+          <div class="logo">Novelle</div>
+          <div class="logo">Delacroix</div>
+          <div class="logo">Laurel &amp; Co.</div>
+          <div class="logo">Aurum</div>
+          <div class="logo">Valette</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Capabilities</h2>
-          <p>From foundational identity and web to ongoing curation, my process favors timeless decisions over trends.</p>
+          <h2>Selected Work</h2>
+          <p>A small curation of recent commissions. See more on the Work page.</p>
         </div>
-        <div class="services">
-          <article class="card">
-            <span class="eyebrow">01</span>
-            <h3>Brand Systems</h3>
-            <p>Typographic palettes, color, and grid systems that embody your tone with restraint and clarity.</p>
-          </article>
-          <article class="card">
-            <span class="eyebrow">02</span>
-            <h3>Web Experiences</h3>
-            <p>Responsive, accessible sites engineered for speed, SEO, and refined motion—no unnecessary bloat.</p>
-          </article>
-          <article class="card">
-            <span class="eyebrow">03</span>
-            <h3>Art Direction</h3>
-            <p>Campaign styling, imagery guidelines, and content curation to keep your presence cohesive.</p>
-          </article>
+        <div class="showcase-grid">
+          <a class="tile" href="work.html" aria-label="Maison Sel case study">
+            <div class="caption"><strong>Maison Sel</strong> — Editorial commerce</div>
+          </a>
+          <a class="tile" href="work.html" aria-label="Novelle case study">
+            <div class="caption"><strong>Novelle</strong> — Boutique portfolio</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- About Me -->
-    <section id="about" class="section">
-      <div class="container contact">
-        <div class="stack">
-          <h2>About Me</h2>
-          <p>Hello! I’m a designer and developer passionate about creating digital spaces that feel luxurious yet minimal. I blend typography, space, and subtle details to make websites that feel calm, intentional, and timeless.</p>
-          <p>My philosophy: <em>Timeless over trendy. Clarity over clutter. Subtle motion, purposeful detail.</em></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section">
-      <div class="container contact">
-        <div class="stack">
-          <h2>Contact</h2>
-          <form aria-label="Contact form" onsubmit="event.preventDefault(); alert('Thank you — I will be in touch.');">
-            <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" required />
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell me about your vision…"></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Send Message</button>
-          </form>
-        </div>
+    <section class="quote">
+      <div class="container">
+        <blockquote>“Luxury is the balance of subtlety and certainty — when nothing shouts, everything speaks.”</blockquote>
+        <div class="byline">— Creative Director</div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container foot-grid">
-      <div>
-        © <span id="year"></span> Aurique Studio — All rights reserved
-      </div>
+      <div>© <span id="year"></span> Aurique Studio — All rights reserved</div>
       <div class="social">
         <a href="#">Instagram</a>
         <a href="#">Dribbble</a>

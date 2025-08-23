@@ -1,10 +1,13 @@
-// Auto-set current year in footer
-document.getElementById('year').textContent = new Date().getFullYear();
+// Footer year
+const y = document.getElementById('year');
+if (y) y.textContent = new Date().getFullYear();
 
-// Simple contact form feedback (can be replaced later with real submission)
+// Simple contact form feedback
 const form = document.querySelector('form[aria-label="Contact form"]');
 if (form) {
-  form.addEventListener('submit', () => {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     alert('Thank you — I will be in touch.');
+    form.reset();
   });
 }
