@@ -140,18 +140,29 @@ a:focus-visible, button:focus-visible {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.8rem;
+  padding: 1.4rem;           /* ↓ smaller padding */
   box-shadow: var(--shadow);
   transition: transform .2s ease;
+  min-height: 180px;         /* ↓ shorter boxes */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: var(--step--1);
+  line-height: 1.5;
 }
-.card:hover { transform: translateY(-3px); }
-.card h3 { margin-bottom: .4rem; color: var(--ink); }
+
+.card h3 {
+  font-size: 0.95rem;        /* keep headings readable */
+  margin-bottom: .5rem;
+  color: var(--ink);
+}
+
 .eyebrow {
-  font-size: .75rem;
+  font-size: .65rem;
   text-transform: uppercase;
   letter-spacing: .15em;
   color: var(--muted);
-  margin-bottom: .5rem;
+  margin-bottom: .4rem;
 }
 
 /* --- Footer --- */
