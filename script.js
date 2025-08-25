@@ -149,6 +149,21 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
   });
 })();
 
+/* Hero image fade-in on load */
+(() => {
+  const heroImg = document.querySelector('.hero-media img.fade-hero');
+  if (!heroImg) return;
+
+  if (!prefersReduced) {
+    // Reveal after small delay for nicer effect
+    setTimeout(() => {
+      heroImg.classList.add('visible');
+    }, 200); // 200ms delay
+  } else {
+    heroImg.classList.add('visible');
+  }
+})();
+
 /* ===========================
    Hamburger (mobile menu)
 =========================== */

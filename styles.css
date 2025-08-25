@@ -361,4 +361,39 @@ html[data-theme="dark"] {
 body { transition: background-color .25s ease, color .25s ease; }
 
 /* (You already have fade-in/reveal CSS; no changes needed) */
+/* Keep hero images centered & responsive */
+.hero-media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-media img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius);  /* match cards */
+  box-shadow: var(--shadow);     /* subtle floating shadow */
+}
+
+/* On mobile: shrink and soften corners a bit more */
+@media (max-width: 640px) {
+  .hero-media img {
+    max-width: 80%;
+    border-radius: calc(var(--radius) * 1.2);
+    box-shadow: var(--shadow); /* still apply the shadow */
+  }
+}
+/* Hero image fade-in */
+.hero-media img.fade-hero {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity .8s ease, transform .8s ease;
+  will-change: opacity, transform;
+}
+.hero-media img.fade-hero.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
