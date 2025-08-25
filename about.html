@@ -4,21 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Me</title>
-  <meta name="theme-color" content="#fafbfc">
-  <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23fafbfc'/%3E%3Cpath d='M19 42 L32 12 L45 42' fill='none' stroke='%23a9c1e6' stroke-width='3'/%3E%3Ccircle cx='32' cy='42' r='3' fill='%23a9c1e6'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header" role="banner">
     <nav class="container nav" aria-label="Primary">
-      <a href="index.html" class="brand" aria-label="Home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l6 10.5H6z"/></svg>
-        </span>
+      <a href="index.html" class="brand">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l6 10.5H6z"/></svg></span>
         Senior Design
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+      <div class="nav-links" id="primary-nav">
         <a href="senior.html">Senior Project</a>
         <a href="fabrication.html">Mini Fabrication</a>
         <a href="about.html" aria-current="page">About Me</a>
@@ -43,9 +41,9 @@
   <footer class="site-footer">
     <div class="container foot-grid">
       <div>© <span id="year"></span> Senior Design — All rights reserved</div>
-      <div class="social">
-        <a href="#">GitHub</a>
-        <a href="#">LinkedIn</a>
+      <div class="footer-actions">
+        <button id="theme-toggle" class="theme-toggle" type="button">Theme: Auto</button>
+        <div class="social"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
       </div>
     </div>
   </footer>
@@ -53,3 +51,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
