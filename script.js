@@ -49,6 +49,8 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
 =========================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Enable animation-hiding rules immediately so elements can fade in
+  document.documentElement.classList.add('animate-init');
 
   const inViewport = (el, offset = 0.1) => {
     const r = el.getBoundingClientRect();
@@ -73,13 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
     targets.forEach(t => io.observe(t));
     return io;
   };
-/* ----- Generic reveals outside <section> ----- */
-const manualTargets = Array.from(document.querySelectorAll('.reveal, .reveal-p, .reveal-li'))
-.filter(el => !el.closest('section'));
-manualTargets.forEach(el => {
-if (inViewport(el, 0.1) || prefersReduced) el.classList.add('visible');
-});
-observe(manualTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  /* ----- Generic reveals outside <section> ----- */
+  const manualTargets = Array.from(document.querySelectorAll('.reveal, .reveal-p, .reveal-li'))
+    .filter(el => !el.closest('section'));
+  observe(manualTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
   /* ----- Cards (.fade-in) ----- */
   const cardTargets = Array.from(document.querySelectorAll('.fade-in'));
@@ -91,61 +90,65 @@ observe(manualTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
     });
   }
   // Pre-flag visible if already in view
-  cardTargets.forEach(el => { if (inViewport(el, 0.15) || prefersReduced) el.classList.add('visible'); });
-  observe(cardTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
   /* ----- Section titles (all <h2>) ----- */
   const titles = Array.from(document.querySelectorAll('h2'));
   titles.forEach((t, i) => {
     t.classList.add('reveal');
     t.style.transitionDelay = `${i * 80}ms`;
-    if (inViewport(t, 0.15) || prefersReduced) t.classList.add('visible');
+    
   });
-  observe(titles, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+  
 
   /* ----- Paragraphs under each section (cascade) ----- */
+  const paraTargets = [];
   document.querySelectorAll('section').forEach(section => {
     const paras = Array.from(section.querySelectorAll('p'));
-    const baseAfterH2 = 40;          // small base delay so it appears quickly
-    const perParaDelay = 120;        // cascade amount
+    const baseAfterH2 = 20;          // small base delay so it appears quickly
+    const perParaDelay = 80;         // cascade amount
     paras.forEach((p, i) => {
       p.classList.add('reveal-p');
       p.style.transitionDelay = `${baseAfterH2 + (i * perParaDelay)}ms`;
-      if (inViewport(p, 0.1) || prefersReduced) p.classList.add('visible');
+
     });
-    observe(paras, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+    paraTargets.push(...paras);
   });
 
   /* ----- List items start after paragraphs (per section) ----- */
+  const bulletTargets = [];
   document.querySelectorAll('section ul, section ol').forEach(list => {
     const section = list.closest('section');
     const paraCount = section ? section.querySelectorAll('p').length : 0;
-    const baseAfterH2 = 40;
-    const perParaDelay = 120;
+    const baseAfterH2 = 20;
+    const perParaDelay = 80;
     const bullets = Array.from(list.querySelectorAll('li'));
     const baseAfterParas = baseAfterH2 + (paraCount > 0 ? (paraCount - 1) * perParaDelay + perParaDelay : 0);
     bullets.forEach((li, i) => {
       li.classList.add('reveal-li');
-      li.style.transitionDelay = `${baseAfterParas + (i * 90)}ms`;
-      if (inViewport(li, 0.08) || prefersReduced) li.classList.add('visible');
+      li.style.transitionDelay = `${baseAfterParas + (i * 60)}ms`;
+      
     });
-    observe(bullets, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    bulletTargets.push(...bullets);
   });
 
   /* ----- Hero image fade (if present) ----- */
   const heroImg = document.querySelector('.hero-media img.fade-hero');
-  if (heroImg) {
-    if (inViewport(heroImg, 0.05) || prefersReduced) {
-      heroImg.classList.add('visible');
-    } else {
-      // nice entry on load
-      heroImg.style.transitionDelay = '200ms';
-    }
-    observe([heroImg], { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+  if (heroImg && !inViewport(heroImg, 0.05)) {
+    // nice entry on load
+    heroImg.style.transitionDelay = '200ms';
   }
+  /* ----- Initial visibility ----- */
+  const initialTargets = Array.from(document.querySelectorAll('.fade-in, .reveal, .reveal-p, .reveal-li, .fade-hero'));
+  initialTargets.forEach(el => { if (inViewport(el) || prefersReduced) el.classList.add('visible'); });
 
-  // IMPORTANT: Only now enable animation-hiding rules
-  document.documentElement.classList.add('animate-init');
+  /* ----- Attach observers ----- */
+  observe(manualTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  observe(cardTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  observe(titles, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+  observe(paraTargets, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+  observe(bulletTargets, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+  if (heroImg) observe([heroImg], { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+  
 });
 
 /* ===========================
