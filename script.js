@@ -73,6 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
     targets.forEach(t => io.observe(t));
     return io;
   };
+/* ----- Generic reveals outside <section> ----- */
+const manualTargets = Array.from(document.querySelectorAll('.reveal, .reveal-p, .reveal-li'))
+.filter(el => !el.closest('section'));
+manualTargets.forEach(el => {
+if (inViewport(el, 0.1) || prefersReduced) el.classList.add('visible');
+});
+observe(manualTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
   /* ----- Cards (.fade-in) ----- */
   const cardTargets = Array.from(document.querySelectorAll('.fade-in'));

@@ -271,9 +271,9 @@ html[data-theme="dark"] {
 }
 
 /* Hide ONLY after JS signals it's ready */
-.animate-init .reveal:not(.visible)    { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
-.animate-init .reveal-p:not(.visible)  { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
-.animate-init .reveal-li:not(.visible) { opacity: 0; transform: translateY( 8px); transition: opacity .45s ease, transform .45s ease; }
+.animate-init .reveal:not(.visible)    { opacity: 0; transform: translateY(16px); transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1); }
+.animate-init .reveal-p:not(.visible)  { opacity: 0; transform: translateY(14px); transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1); }
+.animate-init .reveal-li:not(.visible) { opacity: 0; transform: translateY(10px); transition: opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1); }
 
 .animate-init .fade-in:not(.visible) {
   opacity: 0;
