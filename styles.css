@@ -22,6 +22,7 @@
 
 /* --- Base --- */
 * { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
   margin: 0;
   background: var(--bg);
@@ -30,6 +31,7 @@ body {
   font-weight: 400;
   font-size: var(--step-0);
   line-height: 1.6;
+  transition: background-color .25s ease, color .25s ease; /* smooth theme swap */
 }
 h1, h2, h3 {
   font-family: 'Roboto Slab', serif;
@@ -39,8 +41,8 @@ h1, h2, h3 {
 h1 { font-size: var(--step-3); font-weight: 500; }
 h2 { font-size: var(--step-2); font-weight: 500; }
 h3 { font-size: var(--step-1); font-weight: 500; }
-p { margin: 0 0 1em; color: var(--muted); }
-a { color: inherit; text-decoration: none; }
+p  { margin: 0 0 1em; color: var(--muted); }
+a  { color: inherit; text-decoration: none; }
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -69,7 +71,7 @@ a:focus-visible, button:focus-visible {
 }
 .brand-mark {
   width: 26px; height: 26px; border-radius: 50%;
-  display:grid; place-items:center;
+  display: grid; place-items: center;
   background: var(--ink); box-shadow: var(--shadow);
 }
 .brand-mark svg { width: 16px; height: 16px; fill: var(--accent); }
@@ -91,6 +93,28 @@ a:focus-visible, button:focus-visible {
 .nav-links a:hover::after { width: 100%; }
 .nav-links a[aria-current="page"] { color: var(--ink); font-weight: 500; }
 .nav-links a[aria-current="page"]::after { width: 100%; }
+
+/* === Hamburger button === */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  padding: .4rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.nav-toggle .bar {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  margin: 4px 0;
+  transition: transform .2s ease, opacity .2s ease;
+}
+/* "X" when expanded */
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* --- Hero --- */
 .hero {
@@ -121,6 +145,24 @@ a:focus-visible, button:focus-visible {
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   min-height: 320px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-media img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+@media (max-width: 640px) {
+  .hero-media img {
+    max-width: 80%;
+    border-radius: calc(var(--radius) * 1.2);
+  }
 }
 
 /* --- Sections & Cards --- */
@@ -140,23 +182,21 @@ a:focus-visible, button:focus-visible {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.4rem;           /* ↓ smaller padding */
+  padding: 1.4rem;
   box-shadow: var(--shadow);
   transition: transform .2s ease;
-  min-height: 180px;         /* ↓ shorter boxes */
+  min-height: 180px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   font-size: var(--step--1);
   line-height: 1.5;
 }
-
 .card h3 {
-  font-size: 0.95rem;        /* keep headings readable */
+  font-size: 0.95rem;
   margin-bottom: .5rem;
   color: var(--ink);
 }
-
 .eyebrow {
   font-size: .65rem;
   text-transform: uppercase;
@@ -172,156 +212,8 @@ a:focus-visible, button:focus-visible {
   color: var(--muted);
   font-size: var(--step--1);
 }
-.foot-grid {
-  display:grid; grid-template-columns: 1fr auto; align-items:center;
-}
-.social { display:flex; gap: 1rem; }
-
-/* --- Responsive --- */
-@media (max-width: 960px) {
-  .hero-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-  .nav { grid-template-columns: 1fr; grid-template-areas: 'brand' 'links'; height:auto; gap:.6rem; }
-  .brand { grid-area: brand; }
-  .nav-links { grid-area: links; flex-wrap: wrap; gap: 1rem 1.25rem; padding-bottom: .4rem; }
-}
-/* Scroll reveal (fade-in with slight scale-up) */
-.fade-in {
-  opacity: 0;
-  transform: translateY(16px) scale(0.98);
-  transition: opacity .6s ease, transform .6s ease;
-  will-change: opacity, transform;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Accessibility: disable animations if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .fade-in {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-/* Section title reveal (fade + slight lift) */
-.reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .5s ease, transform .5s ease;
-  will-change: opacity, transform;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-/* Paragraph reveal (slight delay after h2) */
-.reveal-p {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .5s ease, transform .5s ease;
-  will-change: opacity, transform;
-}
-.reveal-p.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-p {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-/* List item reveal (fade + slight lift) */
-.reveal-li {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity .45s ease, transform .45s ease;
-  will-change: opacity, transform;
-}
-.reveal-li.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-li {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-/* === Hamburger button === */
-.nav-toggle {
-  display: none;            /* hidden on desktop */
-  background: transparent;
-  border: 0;
-  padding: .4rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.nav-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-.nav-toggle .bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--ink);
-  margin: 4px 0;
-  transition: transform .2s ease, opacity .2s ease;
-}
-
-/* transform to "X" when open */
-.nav-links.open ~ .nav-toggle .bar:nth-child(1),
-.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-links.open ~ .nav-toggle .bar:nth-child(2),
-.nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
-.nav-links.open ~ .nav-toggle .bar:nth-child(3),
-.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-/* Mobile layout for the menu */
-@media (max-width: 640px) {
-  .nav {
-    grid-template-columns: 1fr auto; /* brand | toggle */
-    gap: .25rem;
-  }
-  .nav-links {
-    position: absolute;
-    top: 64px;              /* below header */
-    left: 0; right: 0;
-    background: var(--card);
-    border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    display: none;          /* hidden by default */
-    flex-direction: column;
-    padding: .6rem .75rem;
-    gap: .75rem;
-  }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
-}
-
-/* Footer actions layout */
-.footer-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-/* Theme toggle button */
+.foot-grid { display:grid; grid-template-columns: 1fr auto; align-items:center; }
+.footer-actions { display: flex; gap: 1rem; align-items: center; }
 .theme-toggle {
   padding: .5rem .8rem;
   border-radius: 999px;
@@ -334,19 +226,28 @@ a:focus-visible, button:focus-visible {
 }
 .theme-toggle:hover { transform: translateY(-1px); }
 
-/* Manual theme overrides (JS sets data-theme on <html>) */
-html[data-theme="light"] {
-  color-scheme: light;
+/* --- Responsive --- */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .nav { grid-template-columns: 1fr auto; gap: .25rem; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; z-index: 60; }
+  .nav-links {
+    position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    padding: .75rem .9rem;
+    gap: .85rem;
+    z-index: 55;
+  }
+  .nav-links.open { display: flex; }
 }
-html[data-theme="dark"] {
-  color-scheme: dark;
-}
-/* Variables for dark theme override (keeps your navy feel but dark UI) */
-/* Manual theme overrides (JS sets data-theme on <html>) */
+
+/* --- Theme toggle (JS applies data-theme) --- */
 html[data-theme="light"] { color-scheme: light; }
 html[data-theme="dark"]  { color-scheme: dark; }
-
-/* Dark theme variables */
 html[data-theme="dark"] {
   --bg: #0b1424;
   --ink: #eaf0ff;
@@ -357,43 +258,53 @@ html[data-theme="dark"] {
   --shadow: 0 2px 12px rgba(0,0,0,.35);
 }
 
-/* (optional: smoothen the swap) */
-body { transition: background-color .25s ease, color .25s ease; }
+/* ===========================
+   Reveal Animations — NO FOUC
+   Animations only start AFTER JS flips .animate-init on <html>.
+   Until then, everything is visible.
+=========================== */
 
-/* (You already have fade-in/reveal CSS; no changes needed) */
-/* Keep hero images centered & responsive */
-.hero-media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Default visible */
+.reveal, .reveal-p, .reveal-li, .fade-in, .hero-media img.fade-hero {
+  opacity: 1;
+  transform: none;
 }
 
-.hero-media img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  border-radius: var(--radius);  /* match cards */
-  box-shadow: var(--shadow);     /* subtle floating shadow */
-}
+/* Hide ONLY after JS signals it's ready */
+.animate-init .reveal:not(.visible)    { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.animate-init .reveal-p:not(.visible)  { opacity: 0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+.animate-init .reveal-li:not(.visible) { opacity: 0; transform: translateY( 8px); transition: opacity .45s ease, transform .45s ease; }
 
-/* On mobile: shrink and soften corners a bit more */
-@media (max-width: 640px) {
-  .hero-media img {
-    max-width: 80%;
-    border-radius: calc(var(--radius) * 1.2);
-    box-shadow: var(--shadow); /* still apply the shadow */
-  }
-}
-/* Hero image fade-in */
-.hero-media img.fade-hero {
+.animate-init .fade-in:not(.visible) {
   opacity: 0;
-  transform: translateY(20px) scale(0.98);
-  transition: opacity .8s ease, transform .8s ease;
+  transform: translateY(16px) scale(0.98);
+  transition: opacity .6s ease, transform .6s ease;
   will-change: opacity, transform;
 }
-.hero-media img.fade-hero.visible {
+.animate-init .fade-in.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
+.animate-init .hero-media img.fade-hero:not(.visible) {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.animate-init .hero-media img.fade-hero.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Accessibility: disable animations if reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-init .reveal:not(.visible),
+  .animate-init .reveal-p:not(.visible),
+  .animate-init .reveal-li:not(.visible),
+  .animate-init .fade-in:not(.visible),
+  .animate-init .hero-media img.fade-hero:not(.visible) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

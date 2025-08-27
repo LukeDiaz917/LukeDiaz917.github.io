@@ -3,19 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About Me</title>
+  <title>About Me — Lucas Vigil Diaz</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Header -->
   <header class="site-header" role="banner">
     <nav class="container nav" aria-label="Primary">
-      <a href="index.html" class="brand">
-        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l6 10.5H6z"/></svg></span>
+      <a href="index.html" class="brand" aria-label="Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l6 10.5H6z"/></svg>
+        </span>
         Senior Design
       </a>
+
+      <!-- Hamburger -->
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
+
+      <!-- Nav links -->
       <div class="nav-links" id="primary-nav">
         <a href="senior.html">Senior Project</a>
         <a href="fabrication.html">Mini Fabrication</a>
@@ -25,25 +32,97 @@
     </nav>
   </header>
 
-  <main class="section container stack">
-    <h1>About Me</h1>
-    <p>Brief bio, engineering interests, tools you use, and your approach to design/build/test. Add a short CV link or downloadable PDF.</p>
+  <!-- Main -->
+  <main class="section">
+    <div class="container stack" style="--space:2rem">
 
-    <h2>Skills</h2>
-    <ul style="color: var(--muted); padding-left:1.2rem;">
-      <li>CAD/CAM · CNC · 3D Printing/Scanning</li>
-      <li>Embedded Systems · PCB Design · Soldering/Rework</li>
-      <li>Materials & Prototyping · Molding & Casting</li>
-      <li>Web/Software · Version Control (Git)</li>
-    </ul>
+      <!-- Intro -->
+      <header class="stack">
+        <h1 class="reveal">About Me</h1>
+        <p class="reveal-p">
+          I’m <strong>Lucas Vigil Diaz</strong>, a Class of 2026 student at Belen Jesuit Preparatory School in Miami, focused on engineering, robotics, and digital fabrication. I lead design/build for FTC/FRC robotics, have interned across civil engineering and university research labs, and recently added metal additive manufacturing, welding, and CNC machining to my toolkit. I’m motivated by measurable results, well-built mechanisms, and shipping working systems. :contentReference[oaicite:0]{index=0}
+        </p>
+      </header>
+
+      <!-- Fast facts -->
+      <section class="stack">
+        <h2 class="reveal">Fast Facts</h2>
+        <ul>
+          <li class="reveal-li"><strong>Education:</strong> Belen Jesuit Preparatory School (2022–2026), Miami, FL</li>
+          <li class="reveal-li"><strong>GPA:</strong> Weighted 4.94; Cumulative 3.93</li>
+          <li class="reveal-li"><strong>Honors:</strong> Principal’s Honor Roll; First Honor Roll; FRC Dean’s List (Semifinalist)</li>
+          <li class="reveal-li"><strong>Clubs:</strong> National, English, Science, and Math Honor Societies; Robotics</li>
+          <li class="reveal-li"><strong>Sports:</strong> Varsity Tennis (2020–Present)</li>
+          <li class="reveal-li"><strong>Certification:</strong> Autodesk Fusion 360 (Certified)</li>
+          <li class="reveal-li"><strong>Languages:</strong> English, Spanish</li>
+        </ul>
+      </section>
+
+      <!-- Experience highlights -->
+      <section class="stack">
+        <h2 class="reveal">Experience Highlights</h2>
+
+        <article class="stack" style="--space:.5rem">
+          <h3 class="reveal">Robotics — Lead Mechanic / Co-President</h3>
+          <p class="reveal-p">Co-lead FTC & FRC teams: mechanism design, assembly, QA, and tasking. Managed parts, organization, and readiness for district/regional competition.</p>
+          <ul>
+            <li class="reveal-li">Designed and built multiple robot subsystems</li>
+            <li class="reveal-li">Maintained quality and efficiency per mechanism</li>
+            <li class="reveal-li">Allocated tasks and managed build workflow</li>
+          </ul>
+        </article>
+
+        <article class="stack" style="--space:.5rem">
+          <h3 class="reveal">University of Miami — MacArthur School of Engineering (Intern)</h3>
+          <p class="reveal-p">Researched powdered-metal compositions and tuned parameters to improve results in metal 3D printing/additive manufacturing.</p>
+        </article>
+
+        <article class="stack" style="--space:.5rem">
+          <h3 class="reveal">MWL — Summer Employment</h3>
+          <p class="reveal-p">Learned TIG welding and CNC router operations; handled materials certifications and shadowed engineering for CAD-to-production workflows.</p>
+        </article>
+
+        <article class="stack" style="--space:.5rem">
+          <h3 class="reveal">Pinnacle Consulting Enterprise (Intern)</h3>
+          <p class="reveal-p">Civil engineering exposure: job-site inspections across Miami, organizing job plans, and understanding bridge design/planning complexity.</p>
+        </article>
+
+        <article class="stack" style="--space:.5rem">
+          <h3 class="reveal">Founder Camp — ML Project</h3>
+          <p class="reveal-p">Built a machine-learning model to analyze LEGO pieces and propose build ideas; presented to an investor panel at Miami-Dade College.</p>
+        </article>
+      </section>
+
+      <!-- Skills -->
+      <section class="stack">
+        <h2 class="reveal">Skills</h2>
+        <ul>
+          <li class="reveal-li">CAD/CAM: Fusion 360 (Certified)</li>
+          <li class="reveal-li">Prototyping: CNC, 3D Printing/Scanning, Welding</li>
+          <li class="reveal-li">Electronics/Fabrication: Assembly, QA, Rework</li>
+          <li class="reveal-li">Soft Skills: Communication, Analytical Thinking, Team Management, Initiative</li>
+        </ul>
+      </section>
+
+      <!-- Goals -->
+      <section class="stack">
+        <h2 class="reveal">What I’m Working Toward</h2>
+        <p class="reveal-p">Applying engineering principles to build reliable, efficient mechanical systems—documenting requirements, validating against metrics, and iterating fast. I’m especially interested in manufacturing and mechanism design where precision and repeatability matter most.</p>
+      </section>
+
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container foot-grid">
       <div>© <span id="year"></span> Senior Design — All rights reserved</div>
       <div class="footer-actions">
-        <button id="theme-toggle" class="theme-toggle" type="button">Theme: Auto</button>
-        <div class="social"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Theme: Auto</button>
+        <div class="social">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -51,4 +130,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-

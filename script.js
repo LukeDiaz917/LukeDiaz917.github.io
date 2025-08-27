@@ -1,61 +1,81 @@
 /* ===========================
-   Basics
+   Helper: feature flags
+=========================== */
+const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+/* ===========================
+   Basic niceties
 =========================== */
 
 // Footer year
-const y = document.getElementById('year');
-if (y) y.textContent = new Date().getFullYear();
+(() => {
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
 
-// Basic contact form feedback (if present)
-const form = document.querySelector('form[aria-label="Contact form"]');
-if (form) {
+// Contact form (optional)
+(() => {
+  const form = document.querySelector('form[aria-label="Contact form"]');
+  if (!form) return;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     alert('Thanks — I will get back to you soon.');
     form.reset();
   });
-}
+})();
 
 /* ===========================
-   Smooth scroll (same‑page anchors)
+   Smooth scroll (same-page anchors)
 =========================== */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    const target = document.querySelector(href);
-    const samePage = this.pathname === location.pathname && this.hostname === location.hostname;
-    if (!samePage || !target) return; // let browser handle cross‑page links
-    e.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-/* ===========================
-   Reveal on scroll (cards, titles, paragraphs, lists)
-=========================== */
-
-const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
-
-/* --- Cards (.fade-in) appear with fade + lift, then stagger in grid --- */
 (() => {
-  const targets = document.querySelectorAll('.fade-in');
-  if (!targets.length) return;
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      const target = document.querySelector(href);
+      const samePage = this.pathname === location.pathname && this.hostname === location.hostname;
+      if (!samePage || !target) return; // let browser handle cross-page links
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
 
-  if (!prefersReduced && 'IntersectionObserver' in window) {
+/* ===========================
+   Reveal system WITHOUT FOUC
+   - Prepare all targets
+   - Immediately mark in-viewport items as visible
+   - Attach observers
+   - THEN flip <html>.classList.add('animate-init')
+=========================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const inViewport = (el, offset = 0.1) => {
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const vw = window.innerWidth  || document.documentElement.clientWidth;
+    return r.top <= vh * (1 - offset) && r.bottom >= vh * 0 && r.left < vw && r.right > 0;
+  };
+
+  const observe = (targets, options = { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }) => {
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      targets.forEach(t => t.classList.add('visible'));
+      return null;
+    }
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          obs.unobserve(entry.target); // reveal once
+          obs.unobserve(entry.target);
         }
       });
-    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    }, options);
+    targets.forEach(t => io.observe(t));
+    return io;
+  };
 
-    targets.forEach(el => io.observe(el));
-  } else {
-    targets.forEach(el => el.classList.add('visible'));
-  }
-
+  /* ----- Cards (.fade-in) ----- */
+  const cardTargets = Array.from(document.querySelectorAll('.fade-in'));
   // Stagger within the .services grid
   const grid = document.querySelector('.services');
   if (grid) {
@@ -63,106 +83,63 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
       el.style.transitionDelay = `${i * 100}ms`;
     });
   }
-})();
+  // Pre-flag visible if already in view
+  cardTargets.forEach(el => { if (inViewport(el, 0.15) || prefersReduced) el.classList.add('visible'); });
+  observe(cardTargets, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
-/* --- H2 titles reveal --- */
-(() => {
-  const titles = document.querySelectorAll('h2');
-  if (!titles.length) return;
+  /* ----- Section titles (all <h2>) ----- */
+  const titles = Array.from(document.querySelectorAll('h2'));
+  titles.forEach((t, i) => {
+    t.classList.add('reveal');
+    t.style.transitionDelay = `${i * 80}ms`;
+    if (inViewport(t, 0.15) || prefersReduced) t.classList.add('visible');
+  });
+  observe(titles, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
 
-  titles.forEach(t => t.classList.add('reveal'));
-
-  if (!prefersReduced && 'IntersectionObserver' in window) {
-    const titleObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
-
-    titles.forEach((t, i) => {
-      t.style.transitionDelay = `${i * 100}ms`;
-      titleObserver.observe(t);
-    });
-  } else {
-    titles.forEach(t => t.classList.add('visible'));
-  }
-})();
-
-/* --- Paragraphs cascade per section --- */
-(() => {
-  const paraObserver = (!prefersReduced && 'IntersectionObserver' in window)
-    ? new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.1 })
-    : null;
-
+  /* ----- Paragraphs under each section (cascade) ----- */
   document.querySelectorAll('section').forEach(section => {
     const paras = Array.from(section.querySelectorAll('p'));
-    if (!paras.length) return;
-
-    const baseAfterH2 = 120; // ms delay after the heading
+    const baseAfterH2 = 40;          // small base delay so it appears quickly
+    const perParaDelay = 120;        // cascade amount
     paras.forEach((p, i) => {
       p.classList.add('reveal-p');
-      p.style.transitionDelay = `${baseAfterH2 + (i * 120)}ms`;
-      if (paraObserver) paraObserver.observe(p);
-      else p.classList.add('visible');
+      p.style.transitionDelay = `${baseAfterH2 + (i * perParaDelay)}ms`;
+      if (inViewport(p, 0.1) || prefersReduced) p.classList.add('visible');
     });
+    observe(paras, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
   });
-})();
 
-/* --- Lists start after last paragraph, then stagger bullets --- */
-(() => {
-  const liObserver = (!prefersReduced && 'IntersectionObserver' in window)
-    ? new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
-    : null;
-
+  /* ----- List items start after paragraphs (per section) ----- */
   document.querySelectorAll('section ul, section ol').forEach(list => {
     const section = list.closest('section');
     const paraCount = section ? section.querySelectorAll('p').length : 0;
-
-    const baseAfterH2 = 120;   // delay after h2
-    const perParaDelay = 120;  // additional delay per paragraph
-    const baseAfterParas = baseAfterH2 + Math.max(0, (paraCount - 1)) * perParaDelay;
-
-    const items = Array.from(list.querySelectorAll('li'));
-    items.forEach((li, i) => {
+    const baseAfterH2 = 40;
+    const perParaDelay = 120;
+    const bullets = Array.from(list.querySelectorAll('li'));
+    const baseAfterParas = baseAfterH2 + (paraCount > 0 ? (paraCount - 1) * perParaDelay + perParaDelay : 0);
+    bullets.forEach((li, i) => {
       li.classList.add('reveal-li');
       li.style.transitionDelay = `${baseAfterParas + (i * 90)}ms`;
-      if (liObserver) liObserver.observe(li);
-      else li.classList.add('visible');
+      if (inViewport(li, 0.08) || prefersReduced) li.classList.add('visible');
     });
+    observe(bullets, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
   });
-})();
 
-/* Hero image fade-in on load */
-(() => {
+  /* ----- Hero image fade (if present) ----- */
   const heroImg = document.querySelector('.hero-media img.fade-hero');
-  if (!heroImg) return;
-
-  if (!prefersReduced) {
-    // Reveal after small delay for nicer effect
-    setTimeout(() => {
+  if (heroImg) {
+    if (inViewport(heroImg, 0.05) || prefersReduced) {
       heroImg.classList.add('visible');
-    }, 200); // 200ms delay
-  } else {
-    heroImg.classList.add('visible');
+    } else {
+      // nice entry on load
+      heroImg.style.transitionDelay = '200ms';
+    }
+    observe([heroImg], { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
   }
-})();
+
+  // IMPORTANT: Only now enable animation-hiding rules
+  document.documentElement.classList.add('animate-init');
+});
 
 /* ===========================
    Hamburger (mobile menu)
@@ -187,14 +164,9 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
   });
 
   // Close when clicking a link (mobile UX)
-  menu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeMenu);
-  });
-
-  // Escape key closes the menu
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  // Escape closes
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 })();
 
 /* ===========================
@@ -222,7 +194,7 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
   // Init
   apply(getStored());
 
-  // Cycle: Auto -> Light -> Dark -> Auto
+  // Cycle Auto -> Light -> Dark -> Auto
   btn.addEventListener('click', () => {
     const current = getStored();
     const next = current === 'auto' ? 'light' : current === 'light' ? 'dark' : 'auto';
@@ -230,9 +202,7 @@ const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').m
     apply(next);
   });
 
-  // If user changes system theme while in Auto, reflect it
+  // Reflect system changes when in Auto
   const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  mq.addEventListener?.('change', () => {
-    if (getStored() === 'auto') apply('auto');
-  });
+  mq.addEventListener?.('change', () => { if (getStored() === 'auto') apply('auto'); });
 })();
