@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Senior Design — Landing</title>
-  <meta name="theme-color" content="#fafbfc">
-  <link rel="stylesheet" href="styles.css" />
+  <title>Portfolio — Artificial Reef & Mini Fabrication</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <!-- Header -->
   <header class="site-header" role="banner">
     <nav class="container nav" aria-label="Primary">
       <a href="index.html" class="brand" aria-label="Home">
@@ -16,14 +16,14 @@
         </span>
         Senior Design
       </a>
-      <!-- Hamburger -->
+
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
         <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
-      <!-- Nav links -->
+
       <div class="nav-links" id="primary-nav">
-        <a href="senior.html">Senior Project</a>
-        <a href="fabrication.html">Mini Fabrication</a>
+        <a href="projects/artificial-reef/index.html">Artificial Reef</a>
+        <a href="#mini-fab" aria-current="page">Mini Fabrication</a>
         <a href="about.html">About Me</a>
         <a href="contact.html">Contact Me</a>
       </div>
@@ -31,116 +31,67 @@
   </header>
 
   <main>
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
-        <div class="stack" style="--space:1.25rem">
-          <span class="kicker">Engineering Portfolio</span>
-          <h1>Senior Design & Digital Fabrication</h1>
-          <p class="lead">Explore my capstone engineering project and a collection of mini fabrication assignments across cutting, machining, electronics, molding, casting, and more.</p>
+        <div class="stack" style="--space:1rem">
+          <p class="kicker">Engineering Portfolio</p>
+          <h1 class="reveal">Artificial Reef Project & Mini-Fabrication</h1>
+          <p class="lead reveal-p">A light, fast portfolio documenting an artificial reef senior design project and a set of focused fabrication exercises. Set up so images, videos, and PDFs can be added easily.</p>
         </div>
         <div class="hero-media">
-          <img src="image1_landing_page.jpeg" alt="Universal fanbelt design prototype" class="fade-hero" />
-        </div>               
+          <!-- Put an image at /assets/images/reef-hero.jpg or change the src -->
+          <img src="assets/images/reef-hero.jpg" alt="Artificial reef concept rendering" class="fade-hero" />
+        </div>
+      </div>
     </section>
 
+    <!-- Artificial Reef Project -->
     <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Start Here</h2>
-          <p>Jump straight to the work sections below. Each page contains anchored subsections for fast navigation.</p>
-        </div>
+      <div class="container section-header">
+        <h2 class="reveal">Artificial Reef Project</h2>
+        <p class="reveal-p">Problem Statement, Preliminary Design Review, Critical Design Review, and Final Presentation — organized on a single hub page.</p>
+      </div>
+      <div class="container services">
+        <a class="card fade-in" href="projects/artificial-reef/index.html">
+          <p class="eyebrow">Capstone</p>
+          <h3>Artificial Reef — Project Hub</h3>
+          <p>Overview + links to reviews and presentation materials.</p>
+        </a>
+      </div>
+    </section>
 
-        <div class="services">
-          <a class="card fade-in" href="senior.html#problem-statement">
-            <span class="eyebrow">Senior Project</span>
-            <h3>Problem Statement</h3>
-            <p>Define the core problem, stakeholders, and design constraints.</p>
-          </a>
+    <!-- Mini Fabrication -->
+    <section id="mini-fab" class="section">
+      <div class="container section-header">
+        <h2 class="reveal">Mini Fabrication Projects</h2>
+        <p class="reveal-p">Each project has its own page so you can add photos and videos later.</p>
+      </div>
 
-          <a class="card fade-in" href="senior.html#pdr">
-            <span class="eyebrow">Senior Project</span>
-            <h3>Preliminary Design Review</h3>
-            <p>Concept exploration, requirements, and early validation.</p>
-          </a>
-
-          <a class="card fade-in" href="senior.html#cdr">
-            <span class="eyebrow">Senior Project</span>
-            <h3>Critical Design Review</h3>
-            <p>Finalized architecture, risk mitigation, and test plans.</p>
-          </a>
-
-          <a class="card fade-in" href="senior.html#final-presentation">
-            <span class="eyebrow">Senior Project</span>
-            <h3>Final Presentation</h3>
-            <p>Results, performance, and reflections.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#computer-controlled-cutting">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Computer‑Controlled Cutting</h3>
-            <p>Design to toolpaths for precise 2D fabrication.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#embedded-programming">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Embedded Programming</h3>
-            <p>Microcontroller bring‑up, IO, and peripherals.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#3d-scanning">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>3D Scanning</h3>
-            <p>Capture & register meshes for reverse engineering.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#computer-controlled-machining">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Computer‑Controlled Machining</h3>
-            <p>CAM strategies and multi‑axis workflows.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#electronics-production">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Electronics Production</h3>
-            <p>PCB milling/soldering, testing, rework.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#molding-and-casting">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Molding & Casting</h3>
-            <p>Mold design, materials, and finishing.</p>
-          </a>
-
-          <a class="card fade-in" href="fabrication.html#welding-tig">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Welding (TIG)</h3>
-            <p>Safety, setup, and precision TIG welding practice.</p>
-          </a>
-          
-
-          <a class="card fade-in" href="fabrication.html#wildcard">
-            <span class="eyebrow">Mini Fabrication</span>
-            <h3>Wildcard</h3>
-            <p>Open exploration beyond standard modules.</p>
-          </a>
-        </div>
+      <div class="container services">
+        <a class="card fade-in" href="projects/mini/cutting.html"><p class="eyebrow">Mini Fab</p><h3>Computer-Controlled Cutting</h3><p>Laser/plotter workflow & results.</p></a>
+        <a class="card fade-in" href="projects/mini/embedded-programming.html"><p class="eyebrow">Mini Fab</p><h3>Embedded Programming</h3><p>MCU setup, firmware, testing.</p></a>
+        <a class="card fade-in" href="projects/mini/3d-scanning.html"><p class="eyebrow">Mini Fab</p><h3>3D Scanning</h3><p>Capture, cleanup, validation.</p></a>
+        <a class="card fade-in" href="projects/mini/machining.html"><p class="eyebrow">Mini Fab</p><h3>Computer-Controlled Machining</h3><p>CNC toolpaths & verification.</p></a>
+        <a class="card fade-in" href="projects/mini/electronics-production.html"><p class="eyebrow">Mini Fab</p><h3>Electronics Production</h3><p>Boards, soldering, QA.</p></a>
+        <a class="card fade-in" href="projects/mini/molding-casting.html"><p class="eyebrow">Mini Fab</p><h3>Molding & Casting</h3><p>Tooling, pours, finish.</p></a>
+        <a class="card fade-in" href="projects/mini/welding-tig.html"><p class="eyebrow">Mini Fab</p><h3>Welding — TIG</h3><p>Process, coupons, parameters.</p></a>
+        <a class="card fade-in" href="projects/mini/wildcard.html"><p class="eyebrow">Mini Fab</p><h3>Wildcard</h3><p>Your choice exploration.</p></a>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container foot-grid">
       <div>© <span id="year"></span> Senior Design — All rights reserved</div>
       <div class="footer-actions">
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Theme: Auto</button>
-        <div class="social">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-        </div>
+        <div class="social"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
