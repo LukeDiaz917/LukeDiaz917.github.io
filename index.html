@@ -1,97 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio — Artificial Reef & Mini Fabrication</title>
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header" role="banner">
-    <nav class="container nav" aria-label="Primary">
-      <a href="index.html" class="brand" aria-label="Home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l6 10.5H6z"/></svg>
-        </span>
-        Senior Design
-      </a>
-
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="primary-nav" aria-expanded="false">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-
-      <div class="nav-links" id="primary-nav">
-        <a href="projects/artificial-reef/index.html">Artificial Reef</a>
-        <a href="#mini-fab" aria-current="page">Mini Fabrication</a>
-        <a href="about.html">About Me</a>
-        <a href="contact.html">Contact Me</a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="stack" style="--space:1rem">
-          <p class="kicker">Engineering Portfolio</p>
-          <h1 class="reveal">Artificial Reef Project & Mini-Fabrication</h1>
-          <p class="lead reveal-p">A light, fast portfolio documenting an artificial reef senior design project and a set of focused fabrication exercises. Set up so images, videos, and PDFs can be added easily.</p>
-        </div>
-        <div class="hero-media">
-          <!-- Put an image at /assets/images/reef-hero.jpg or change the src -->
-          <img src="assets/images/logo.png" alt="Artificial reef concept rendering" class="fade-hero" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Artificial Reef Project -->
-    <section class="section">
-      <div class="container section-header">
-        <h2 class="reveal">Artificial Reef Project</h2>
-        <p class="reveal-p">Problem Statement, Preliminary Design Review, Critical Design Review, and Final Presentation — organized on a single hub page.</p>
-      </div>
-      <div class="container services">
-        <a class="card fade-in" href="projects/artificial-reef/index.html">
-          <p class="eyebrow">Capstone</p>
-          <h3>Artificial Reef — Project Hub</h3>
-          <p>Overview + links to reviews and presentation materials.</p>
+<!doctype html>
+<html lang="en" class="animate-init">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio — Artificial Reef & Mini Fabrication</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <nav class="container nav" aria-label="Primary">
+        <a href="index.html" class="brand" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3l6 10.5H6z" />
+            </svg>
+          </span>
+          Senior Design
         </a>
-      </div>
-    </section>
 
-    <!-- Mini Fabrication -->
-    <section id="mini-fab" class="section">
-      <div class="container section-header">
-        <h2 class="reveal">Mini Fabrication Projects</h2>
-        <p class="reveal-p">Each project has its own page so you can add photos and videos later.</p>
-      </div>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle menu"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span class="bar"></span><span class="bar"></span
+          ><span class="bar"></span>
+        </button>
 
-      <div class="container services">
-        <a class="card fade-in" href="projects/mini/cutting.html"><p class="eyebrow">Mini Fab</p><h3>Computer-Controlled Cutting</h3><p>Laser/plotter workflow & results.</p></a>
-        <a class="card fade-in" href="projects/mini/embedded-programming.html"><p class="eyebrow">Mini Fab</p><h3>Embedded Programming</h3><p>MCU setup, firmware, testing.</p></a>
-        <a class="card fade-in" href="projects/mini/3d-scanning.html"><p class="eyebrow">Mini Fab</p><h3>3D Scanning</h3><p>Capture, cleanup, validation.</p></a>
-        <a class="card fade-in" href="projects/mini/machining.html"><p class="eyebrow">Mini Fab</p><h3>Computer-Controlled Machining</h3><p>CNC toolpaths & verification.</p></a>
-        <a class="card fade-in" href="projects/mini/electronics-production.html"><p class="eyebrow">Mini Fab</p><h3>Electronics Production</h3><p>Boards, soldering, QA.</p></a>
-        <a class="card fade-in" href="projects/mini/molding-casting.html"><p class="eyebrow">Mini Fab</p><h3>Molding & Casting</h3><p>Tooling, pours, finish.</p></a>
-        <a class="card fade-in" href="projects/mini/welding-tig.html"><p class="eyebrow">Mini Fab</p><h3>Welding — TIG</h3><p>Process, coupons, parameters.</p></a>
-        <a class="card fade-in" href="projects/mini/wildcard.html"><p class="eyebrow">Mini Fab</p><h3>Wildcard</h3><p>Your choice exploration.</p></a>
-      </div>
-    </section>
-  </main>
+        <div class="nav-links" id="primary-nav">
+          <a href="projects/artificial-reef/index.html">Artificial Reef</a>
+          <a href="#mini-fab" aria-current="page">Mini Fabrication</a>
+          <a href="about.html">About Me</a>
+          <a href="contact.html">Contact Me</a>
+        </div>
+      </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container foot-grid">
-      <div>© <span id="year"></span> Senior Design — All rights reserved</div>
-      <div class="footer-actions">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">Theme: Auto</button>
-        <div class="social"><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
-      </div>
-    </div>
-  </footer>
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="stack" style="--space: 1rem">
+            <p class="kicker">Engineering Portfolio</p>
+            <h1 class="reveal">Artificial Reef Project & Mini-Fabrication</h1>
+            <p class="lead reveal-p">
+              A light, fast portfolio documenting an artificial reef senior
+              design project and a set of focused fabrication exercises. Set up
+              so images, videos, and PDFs can be added easily.
+            </p>
+          </div>
+          <div class="hero-media">
+            <!-- Put an image at /assets/images/reef-hero.jpg or change the src -->
+            <img
+              src="assets/images/logo.png"
+              alt="Artificial reef concept rendering"
+              class="fade-hero"
+            />
+          </div>
+        </div>
+      </section>
 
-  <script src="js/script.js"></script>
-</body>
+      <!-- Artificial Reef Project -->
+      <section class="section">
+        <div class="container section-header">
+          <h2 class="reveal">Artificial Reef Project</h2>
+          <p class="reveal-p">
+            Problem Statement, Preliminary Design Review, Critical Design
+            Review, and Final Presentation — organized on a single hub page.
+          </p>
+        </div>
+        <div class="container services">
+          <a class="card fade-in" href="projects/artificial-reef/index.html">
+            <p class="eyebrow">Capstone</p>
+            <h3>Artificial Reef — Project Hub</h3>
+            <p>Overview + links to reviews and presentation materials.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Mini Fabrication -->
+      <section id="mini-fab" class="section">
+        <div class="container section-header">
+          <h2 class="reveal">Mini Fabrication Projects</h2>
+          <p class="reveal-p">
+            Each project has its own page so you can add photos and videos
+            later.
+          </p>
+        </div>
+
+        <div class="container services">
+          <a class="card fade-in" href="projects/mini/cutting.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Computer-Controlled Cutting</h3>
+            <p>Laser/plotter workflow & results.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/embedded-programming.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Embedded Programming</h3>
+            <p>MCU setup, firmware, testing.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/3d-scanning.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>3D Scanning</h3>
+            <p>Capture, cleanup, validation.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/machining.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Computer-Controlled Machining</h3>
+            <p>CNC toolpaths & verification.</p></a
+          >
+          <a
+            class="card fade-in"
+            href="projects/mini/electronics-production.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Electronics Production</h3>
+            <p>Boards, soldering, QA.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/molding-casting.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Molding & Casting</h3>
+            <p>Tooling, pours, finish.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/welding-tig.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Welding — TIG</h3>
+            <p>Process, coupons, parameters.</p></a
+          >
+          <a class="card fade-in" href="projects/mini/wildcard.html"
+            ><p class="eyebrow">Mini Fab</p>
+            <h3>Wildcard</h3>
+            <p>Your choice exploration.</p></a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container foot-grid">
+        <div>
+          © <span id="year"></span> Senior Design — All rights reserved
+        </div>
+        <div class="footer-actions">
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle theme"
+          >
+            Theme: Auto
+          </button>
+          <div class="social">
+            <a href="#">GitHub</a><a href="#">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
