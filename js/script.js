@@ -26,6 +26,8 @@ const prefersReduced =
 
 /* Reveal system (no FOUC): prepare, mark in-view, then enable animations */
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.classList.remove("animate-init");
+
   const inViewport = (el, offset = 0.1) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -57,6 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
     targets.forEach((t) => io.observe(t));
     return io;
   };
+
+  // Elements already marked with .reveal in the markup (hero headline, etc.)
+  const presetReveals = Array.from(document.querySelectorAll(".reveal"));
+  presetReveals.forEach((el) => {
+    if (inViewport(el, 0.15) || prefersReduced) el.classList.add("visible");
+  });
+  observe(presetReveals, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -10% 0px",
+  });
 
   // Cards
   const cards = Array.from(document.querySelectorAll(".fade-in"));
