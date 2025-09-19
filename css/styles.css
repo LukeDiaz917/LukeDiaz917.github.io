@@ -15,6 +15,9 @@
   --surface-glass: rgba(255, 255, 255, 0.92);
   --surface-glass-strong: rgba(255, 255, 255, 0.94);
   --surface-glass-soft: rgba(255, 255, 255, 0.85);
+  --hero-media-bg: #ffffff;
+  --hero-media-border: rgba(214, 226, 255, 0.8);
+  --hero-media-shadow: 0 15px 35px rgba(10, 31, 61, 0.08);
   --hero-stop-1: rgba(67, 180, 230, 0.18);
   --hero-stop-2: rgba(255, 122, 89, 0.08);
   --hero-stop-3: rgba(255, 255, 255, 0.9);
@@ -242,9 +245,9 @@ button:focus-visible {
 }
 .hero-media {
   border-radius: var(--radius);
-  background: var(--surface-glass);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
+  background: var(--hero-media-bg);
+  border: 1px solid var(--hero-media-border);
+  box-shadow: var(--hero-media-shadow);
   min-height: 320px;
   display: flex;
   justify-content: center;

@@ -68,6 +68,26 @@ document.addEventListener("DOMContentLoaded", () => {
     rootMargin: "0px 0px -10% 0px",
   });
 
+  const presetRevealParagraphs = Array.from(
+    document.querySelectorAll(".reveal-p"),
+  );
+  presetRevealParagraphs.forEach((el) => {
+    if (inViewport(el, 0.15) || prefersReduced) el.classList.add("visible");
+  });
+  observe(presetRevealParagraphs, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -10% 0px",
+  });
+
+  const presetRevealItems = Array.from(document.querySelectorAll(".reveal-li"));
+  presetRevealItems.forEach((el) => {
+    if (inViewport(el, 0.12) || prefersReduced) el.classList.add("visible");
+  });
+  observe(presetRevealItems, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -10% 0px",
+  });
+
   // Cards
   const cards = Array.from(document.querySelectorAll(".fade-in"));
   const grid = document.querySelector(".services");
