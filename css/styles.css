@@ -12,6 +12,26 @@
   --accent-secondary: #43b4e6;
   --accent-soft: #ffe6dd;
   --card: rgba(255, 255, 255, 0.95);
+  --surface-glass: rgba(255, 255, 255, 0.92);
+  --surface-glass-strong: rgba(255, 255, 255, 0.94);
+  --surface-glass-soft: rgba(255, 255, 255, 0.85);
+  --hero-stop-1: rgba(67, 180, 230, 0.18);
+  --hero-stop-2: rgba(255, 122, 89, 0.08);
+  --hero-stop-3: rgba(255, 255, 255, 0.9);
+  --section-alt-stop-1: rgba(255, 230, 221, 0.65);
+  --section-alt-stop-2: rgba(246, 249, 255, 0.9);
+  --section-alt-stop-3: rgba(255, 255, 255, 0.95);
+  --footer-stop-1: rgba(255, 122, 89, 0.06);
+  --footer-stop-2: rgba(246, 249, 255, 0.92);
+  --footer-stop-3: rgba(255, 255, 255, 0.96);
+  --card-border-soft: rgba(214, 226, 255, 0.8);
+  --card-shadow-strong: 0 15px 35px rgba(10, 31, 61, 0.08);
+  --card-shadow-strong-hover: 0 20px 40px rgba(10, 31, 61, 0.12);
+  --about-card-shadow: 0 18px 38px rgba(10, 31, 61, 0.09);
+  --theme-pill-border: rgba(255, 98, 60, 0.35);
+  --theme-pill-bg: rgba(255, 122, 89, 0.12);
+  --theme-pill-shadow: 0 10px 25px rgba(10, 31, 61, 0.08);
+  --theme-pill-shadow-hover: 0 12px 28px rgba(10, 31, 61, 0.12);
   --page-bg: linear-gradient(180deg, #f6f9ff 0%, #ffffff 45%, #fff4ed 100%);
   --shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   --radius: 14px;
@@ -91,7 +111,7 @@ button:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--surface-glass);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
@@ -193,9 +213,9 @@ button:focus-visible {
   border-bottom: 1px solid var(--line);
   background: linear-gradient(
     140deg,
-    rgba(67, 180, 230, 0.18) 0%,
-    rgba(255, 122, 89, 0.08) 55%,
-    rgba(255, 255, 255, 0.9) 100%
+    var(--hero-stop-1) 0%,
+    var(--hero-stop-2) 55%,
+    var(--hero-stop-3) 100%
   );
 }
 .hero-grid {
@@ -222,7 +242,7 @@ button:focus-visible {
 }
 .hero-media {
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--surface-glass);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   min-height: 320px;
@@ -272,9 +292,9 @@ button:focus-visible {
 .section:nth-of-type(even) {
   background: linear-gradient(
     160deg,
-    rgba(255, 230, 221, 0.65) 0%,
-    rgba(246, 249, 255, 0.9) 60%,
-    rgba(255, 255, 255, 0.95) 100%
+    var(--section-alt-stop-1) 0%,
+    var(--section-alt-stop-2) 60%,
+    var(--section-alt-stop-3) 100%
   );
 }
 
@@ -286,15 +306,15 @@ button:focus-visible {
 .card {
   background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.94) 0%,
-      rgba(255, 255, 255, 0.85) 100%
+      var(--surface-glass-strong) 0%,
+      var(--surface-glass-soft) 100%
     ),
     var(--card);
-  border: 1px solid rgba(214, 226, 255, 0.8);
+  border: 1px solid var(--card-border-soft);
   border-top: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: 1.4rem;
-  box-shadow: 0 15px 35px rgba(10, 31, 61, 0.08);
+  box-shadow: var(--card-shadow-strong);
   transition: transform 0.2s ease;
   min-height: 180px;
   display: flex;
@@ -305,7 +325,7 @@ button:focus-visible {
 }
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(10, 31, 61, 0.12);
+  box-shadow: var(--card-shadow-strong-hover);
 }
 .card h3 {
   font-size: 0.95rem;
@@ -369,11 +389,11 @@ button:focus-visible {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .about-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), var(--card));
+  background: linear-gradient(180deg, var(--surface-glass-strong), var(--card));
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.6rem;
-  box-shadow: 0 18px 38px rgba(10, 31, 61, 0.09);
+  box-shadow: var(--about-card-shadow);
   display: grid;
   gap: 0.75rem;
 }
@@ -395,6 +415,50 @@ button:focus-visible {
   display: grid;
   gap: 2.5rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+
+/* --- Essay layout --- */
+.essay {
+  --space: 1.8rem;
+}
+
+.essay-header {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 1rem;
+}
+
+.essay-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.essay-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.essay-section + .essay-section {
+  margin-top: 1.4rem;
+}
+
+.essay-section h2 {
+  margin-bottom: 0.6rem;
+}
+
+.essay-section p + p {
+  margin-top: 0.9rem;
 }
 
 
@@ -426,9 +490,9 @@ button:focus-visible {
   font-size: var(--step--1);
   background: linear-gradient(
     180deg,
-    rgba(255, 122, 89, 0.06) 0%,
-    rgba(246, 249, 255, 0.92) 60%,
-    rgba(255, 255, 255, 0.96) 100%
+    var(--footer-stop-1) 0%,
+    var(--footer-stop-2) 60%,
+    var(--footer-stop-3) 100%
   );
 }
 .foot-grid {
@@ -444,16 +508,16 @@ button:focus-visible {
 .theme-toggle {
   padding: 0.5rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 98, 60, 0.35);
-  background: rgba(255, 122, 89, 0.12);
+  border: 1px solid var(--theme-pill-border);
+  background: var(--theme-pill-bg);
   color: var(--accent-strong);
-  box-shadow: 0 10px 25px rgba(10, 31, 61, 0.08);
+  box-shadow: var(--theme-pill-shadow);
   font-size: var(--step--1);
   cursor: pointer;
 }
 .theme-toggle:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px rgba(10, 31, 61, 0.12);
+  box-shadow: var(--theme-pill-shadow-hover);
 }
 
 /* --- Responsive --- */
@@ -507,12 +571,32 @@ html[data-theme="dark"] {
   --accent-strong: #a4b9e9;
   --accent-secondary: #4c89d8;
   --accent-soft: rgba(142, 163, 209, 0.18);
+  --surface-glass: rgba(11, 20, 36, 0.82);
+  --surface-glass-strong: rgba(11, 20, 36, 0.88);
+  --surface-glass-soft: rgba(11, 20, 36, 0.75);
+  --hero-stop-1: rgba(76, 137, 216, 0.25);
+  --hero-stop-2: rgba(142, 163, 209, 0.16);
+  --hero-stop-3: rgba(11, 20, 36, 0.96);
+  --section-alt-stop-1: rgba(21, 34, 56, 0.75);
+  --section-alt-stop-2: rgba(12, 22, 39, 0.88);
+  --section-alt-stop-3: rgba(8, 16, 30, 0.94);
+  --footer-stop-1: rgba(142, 163, 209, 0.1);
+  --footer-stop-2: rgba(11, 20, 36, 0.92);
+  --footer-stop-3: rgba(9, 17, 30, 0.96);
+  --card-border-soft: rgba(94, 123, 185, 0.45);
+  --card-shadow-strong: 0 15px 35px rgba(0, 0, 0, 0.45);
+  --card-shadow-strong-hover: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --about-card-shadow: 0 18px 38px rgba(0, 0, 0, 0.5);
+  --theme-pill-border: rgba(142, 163, 209, 0.45);
+  --theme-pill-bg: rgba(67, 180, 230, 0.15);
+  --theme-pill-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+  --theme-pill-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.55);
   --page-bg: linear-gradient(180deg, #050a18 0%, #0b1424 55%, #121f34 100%);
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
-/* === Reveal Animations — NO FOUC ===
-   Animations only start AFTER JS flips .animate-init on <html>. */
+/* === Reveal Animations — markup ships with .animate-init so JS only toggles
+   .visible classes. === */
 .reveal,
 .reveal-p,
 .reveal-li,

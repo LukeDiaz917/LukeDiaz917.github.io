@@ -26,8 +26,6 @@ const prefersReduced =
 
 /* Reveal system (no FOUC): prepare, mark in-view, then enable animations */
 document.addEventListener("DOMContentLoaded", () => {
-  document.documentElement.classList.remove("animate-init");
-
   const inViewport = (el, offset = 0.1) => {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
@@ -124,8 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observe([heroImg], { threshold: 0.05, rootMargin: "0px 0px -5% 0px" });
   }
 
-  // Finally enable animation CSS rules
-  document.documentElement.classList.add("animate-init");
 });
 
 /* Hamburger */
