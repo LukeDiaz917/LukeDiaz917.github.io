@@ -535,6 +535,46 @@ button:focus-visible {
   box-shadow: var(--theme-pill-shadow-hover);
 }
 
+.form-status {
+  display: none;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: var(--step--1);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: var(--surface-glass);
+  color: var(--muted);
+  box-shadow: 0 10px 24px rgba(10, 31, 61, 0.08);
+  transition: opacity 0.2s ease, transform 0.2s ease,
+    border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.form-status[data-state] {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-status[data-state="pending"] {
+  border-color: rgba(10, 31, 61, 0.12);
+  background: var(--surface-glass-soft);
+  color: var(--muted);
+}
+
+.form-status[data-state="success"] {
+  border-color: rgba(67, 180, 230, 0.45);
+  background: rgba(67, 180, 230, 0.18);
+  color: var(--ink);
+}
+
+.form-status[data-state="error"] {
+  border-color: rgba(255, 98, 60, 0.35);
+  background: rgba(255, 122, 89, 0.16);
+  color: var(--accent-strong);
+}
+
 /* --- Responsive --- */
 @media (max-width: 960px) {
   .hero-grid {

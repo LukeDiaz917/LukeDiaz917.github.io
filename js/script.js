@@ -1,6 +1,6 @@
 /* Feature: reduced motion */
 const prefersReduced =
-  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+  window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
 /* Footer year */
 (() => {
@@ -206,13 +206,89 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 
-/* Contact form toast */
+/* Contact form submission + inline status */
 (() => {
   const form = document.querySelector('form[aria-label="Contact form"]');
   if (!form) return;
-  form.addEventListener("submit", (e) => {
+
+  const statusEl = form.querySelector("[data-form-status]");
+  const setStatus = (message, state) => {
+    if (!statusEl) return;
+    if (!state) {
+      statusEl.textContent = "";
+      statusEl.removeAttribute("data-state");
+      statusEl.setAttribute("aria-hidden", "true");
+      return;
+    }
+    statusEl.textContent = message;
+    statusEl.dataset.state = state;
+    statusEl.setAttribute("aria-hidden", "false");
+  };
+
+  setStatus("", null);
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    alert("Thanks — I will get back to you soon.");
-    form.reset();
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    const previouslyFocused =
+      document.activeElement &&
+      typeof document.activeElement.focus === "function"
+        ? document.activeElement
+        : null;
+
+    if (!form.action) {
+      setStatus("No form endpoint is configured.", "error");
+      return;
+    }
+
+    setStatus("Sending your message…", "pending");
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute("aria-busy", "true");
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method || "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent! I'll respond as soon as I can.", "success");
+        form.reset();
+      } else {
+        let errorText =
+          "We couldn't send your message. Please try again in a moment.";
+        try {
+          const data = await response.json();
+          if (Array.isArray(data?.errors) && data.errors.length > 0) {
+            errorText = data.errors
+              .map((err) => err?.message)
+              .filter(Boolean)
+              .join(" ");
+          }
+        } catch (_err) {
+          // ignore JSON parse errors
+        }
+        setStatus(errorText, "error");
+      }
+    } catch (_error) {
+      setStatus(
+        "A network error prevented your message from sending. Please check your connection and try again.",
+        "error",
+      );
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.removeAttribute("aria-busy");
+      }
+      if (previouslyFocused) {
+        requestAnimationFrame(() => {
+          previouslyFocused.focus();
+        });
+      }
+    }
   });
 })();

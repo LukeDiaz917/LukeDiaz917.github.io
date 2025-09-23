@@ -41,7 +41,13 @@
         Use the form to reach out about the project or collaboration.
       </p>
 
-      <form class="stack" aria-label="Contact form" style="max-width: 640px">
+      <form
+        class="stack"
+        aria-label="Contact form"
+        style="max-width: 640px"
+        method="POST"
+        action="https://formspree.io/f/mrgnzgek"
+      >
         <label class="reveal-p"
           >Name<br /><input
             type="text"
@@ -82,6 +88,13 @@
         <button type="submit" class="theme-toggle" style="border-radius: 12px">
           Send
         </button>
+        <p
+          class="form-status"
+          data-form-status
+          role="status"
+          aria-live="polite"
+          aria-hidden="true"
+        ></p>
       </form>
     </main>
 
