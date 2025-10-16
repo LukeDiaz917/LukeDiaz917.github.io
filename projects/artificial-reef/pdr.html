@@ -48,72 +48,204 @@
         <span>Preliminary Design Review</span>
       </nav>
 
-      <h1 class="reveal">Preliminary Design Review</h1>
-      <p class="reveal-p">
-        Central location for the preliminary design review deliverables,
-        including the justification essay template, trade studies, system
-        models, and risk tracking.
-      </p>
+      <header class="page-intro stack">
+        <h1 class="reveal">Preliminary Design Review</h1>
+        <p class="reveal-p">
+          Summary of the March 2024 PDR for the modular reef habitat system.
+          The panel endorsed moving the ceramic lattice concept forward with a
+          targeted set of hydrodynamic refinements and validation milestones.
+        </p>
+      </header>
+
+      <section class="split">
+        <div class="stack">
+          <h2 class="reveal">Overview Summary</h2>
+          <p class="reveal-p">
+            The review closed with a <strong>proceed with revisions</strong>
+            decision. Panelists asked the team to finalize the lattice frame
+            geometry before CDR, citing the favorable colonization data and the
+            ease of diver deployment demonstrated in the mock install.
+          </p>
+          <ul class="reveal-p">
+            <li>
+              <strong>Stakeholder needs:</strong> in-situ sensors must log
+              dissolved oxygen &amp; turbidity every 10 minutes; divers require
+              sub-45 minute placements in 6 ft surge.
+            </li>
+            <li>
+              <strong>Success metrics:</strong> ≥18% drag reduction versus the
+              concrete block baseline and survival of 90% of seeded coral
+              fragments at 6 months.
+            </li>
+            <li>
+              <strong>Action items:</strong> complete CFD sensitivity sweep
+              (due 4/12), lock the sensor pod gasket design (due 4/26), and
+              deliver an updated deployment SOP (due 5/03).
+            </li>
+          </ul>
+        </div>
+        <aside class="card stack" aria-labelledby="panel-feedback-title">
+          <h3 id="panel-feedback-title">Panel Highlights</h3>
+          <ul>
+            <li>
+              Commended the modular ballast plates that let divers trim buoyancy
+              underwater without surface support.
+            </li>
+            <li>
+              Requested thermal cycling verification on the ceramic glaze to
+              prove resistance to micro-cracking.
+            </li>
+            <li>
+              Added a mid-June design checkpoint to preview the integrated data
+              logger UI with live tank feeds.
+            </li>
+          </ul>
+        </aside>
+      </section>
 
       <section class="stack">
-        <h2 class="reveal">Review Overview</h2>
+        <h2 class="reveal">Deliverables</h2>
         <p class="reveal-p">
-          Summarize the review goals, panel feedback, and outstanding action
-          items. Capture the problem framing, stakeholder needs, and success
-          criteria that guided the concept exploration.
+          Reference deck, analyses, and decision artifacts circulated ahead of
+          the PDR. Each link opens the version reviewed by the panel.
         </p>
-        <div class="stack" style="--space: 0.75rem">
+        <div class="card-grid">
           <a class="card" href="./pdr-justification.html">
             <h3>PDR Justification Essay</h3>
             <p>
-              Use the essay-ready layout to document the story behind your
-              preliminary design decisions and outcomes.
+              Narrative tying stakeholder interviews, reef biology targets, and
+              the resulting lattice configuration together with traceable
+              requirements.
             </p>
           </a>
           <a class="card" href="../../assets/docs/reef-pdr-summary.pdf">
-            <h3>Executive Summary</h3>
+            <h3>Executive Summary Deck</h3>
             <p>
-              Highlight key decisions, trade study outcomes, and requested
-              follow-up items.
+              22-slide briefing, including concept trade scores, system context
+              diagram, schedule risk burndown, and open action log.
+            </p>
+          </a>
+          <a class="card" href="../../assets/docs/reef-hydrodynamics-study.pdf">
+            <h3>Hydrodynamics Trade Study</h3>
+            <p>
+              CFD comparison of lattice, ribbed concrete, and polymer mesh
+              modules with drag coefficients, scour depth projections, and wave
+              load envelopes.
+            </p>
+          </a>
+          <a class="card" href="../../assets/docs/reef-materials-matrix.pdf">
+            <h3>Materials Compatibility Matrix</h3>
+            <p>
+              Lab-tested corrosion, leaching, and bio-fouling data for ceramic
+              clay mixes, stainless hardware, and recycled plastics.
             </p>
           </a>
         </div>
       </section>
 
-      <section class="stack">
-        <h2 class="reveal">Concept Exploration</h2>
-        <p class="reveal-p">
-          Document each concept variant, evaluation criteria, and supporting
-          analysis (CFD results, tank testing snapshots, materials experiments).
-        </p>
-        <div class="stack" style="--space: 0.75rem">
-          <p>
-            Create tables, embed images, or link to data sets that showcase how
-            the preferred design was selected. Replace this text with your own
-            findings.
+      <section class="split">
+        <div class="stack">
+          <h2 class="reveal">Trade Study Highlights</h2>
+          <p class="reveal-p">
+            Evaluated three reef module archetypes against hydrodynamics,
+            deployment effort, biological performance, and lifecycle cost.
+            Weighted score favored the ceramic lattice by 12 points.
           </p>
+          <ol>
+            <li>
+              <strong>Lattice ceramic (selected):</strong> score 86/100. Lowest
+              drag profile (Cd 0.72) and 32% higher spat settlement in lab
+              trials. Manufacturing cost $540 per module with reusable molds.
+            </li>
+            <li>
+              <strong>Ribbed concrete block:</strong> score 74/100. Durable but
+              required crane deployment and produced only 8% drag reduction
+              relative to existing reefs, triggering diver safety concerns.
+            </li>
+            <li>
+              <strong>Polymer mesh frame:</strong> score 63/100. Light and cheap
+              but failed 3 of 5 UV exposure tests and exceeded allowable
+              deflection under 1.2 m surge.
+            </li>
+          </ol>
         </div>
+        <aside class="card stack" aria-labelledby="test-data-title">
+          <h3 id="test-data-title">Key Test Data</h3>
+          <ul>
+            <li>
+              Wave tank run 17B: lattice prototype held position with 18% drag
+              reduction versus control block at 1.0 m/s current.
+            </li>
+            <li>
+              Settlement panel assay recorded 41 juvenile oysters after 30 days
+              on ceramic glaze versus 28 on concrete reference coupons.
+            </li>
+            <li>
+              Thermal cycling (−5&nbsp;°C to 45&nbsp;°C) showed no glaze
+              spalling through 120 cycles; full report linked in appendix C.
+            </li>
+          </ul>
+        </aside>
       </section>
 
       <section class="stack">
-        <h2 class="reveal">Risk and Validation Planning</h2>
+        <h2 class="reveal">Risk &amp; Validation Tracker</h2>
         <p class="reveal-p">
-          Track the technical, schedule, and environmental risks identified
-          during the PDR, along with mitigation strategies and test plans.
+          Snapshot of the red and yellow risks discussed at the review plus the
+          validation workstreams underway ahead of CDR.
         </p>
-        <div class="stack" style="--space: 0.75rem">
+        <div class="split balanced">
+          <div class="card stack" aria-labelledby="risk-burndown-title">
+            <h3 id="risk-burndown-title">Top Risks</h3>
+            <ul>
+              <li>
+                <strong>R-07 Structural fatigue:</strong> lattice struts may
+                crack after repeated boat wash. Accelerated fatigue testing at
+                the MARIN tank kicks off 4/08 with FEA correlation by 4/22.
+              </li>
+              <li>
+                <strong>R-11 Sensor fouling:</strong> biofilm on optical DO
+                probe could bias readings. Field trial will compare silicone and
+                copper mesh guards during the April pier deployment.
+              </li>
+              <li>
+                <strong>R-14 Permit delay:</strong> coastal commission approval
+                may slip due to eelgrass survey backlog. Liaison secured a
+                5/01 hearing slot; contingency site package is in progress.
+              </li>
+            </ul>
+          </div>
+          <div class="card stack" aria-labelledby="validation-matrix-title">
+            <h3 id="validation-matrix-title">Validation Path</h3>
+            <ul>
+              <li>
+                Complete CFD verification matrix with coarse/fine mesh
+                comparison and publish sensitivity memo by 4/19.
+              </li>
+              <li>
+                Execute pier deployment of two instrumented modules the week of
+                4/29 to validate installation timeline and data logger uptime.
+              </li>
+              <li>
+                Update validation plan with June dive observations and compare
+                colonization metrics to baseline reef transects.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-grid">
           <a class="card" href="../../assets/docs/reef-risk-register.xlsx">
             <h3>Risk Register</h3>
             <p>
-              Upload the current risk register or convert it to PDF before
-              linking if preferred.
+              Live register with probability/impact scoring, mitigation owners,
+              and monthly burndown charts.
             </p>
           </a>
           <a class="card" href="../../assets/docs/reef-validation-plan.pdf">
             <h3>Validation Plan</h3>
             <p>
-              Outline the experiments, simulation work, and metrics that will
-              retire the PDR risks.
+              Test methods, success criteria, and evidence map aligned to
+              system-level requirements traceability.
             </p>
           </a>
         </div>
@@ -142,4 +274,4 @@
 
     <script src="../../js/script.js"></script>
   </body>
-</html>
+</html> 

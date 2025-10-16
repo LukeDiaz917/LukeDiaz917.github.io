@@ -365,6 +365,32 @@ button:focus-visible {
   margin-bottom: 0.5rem;
   color: var(--ink);
 }
+.page-intro {
+  max-width: 70ch;
+}
+
+.split {
+  display: grid;
+  gap: 2rem;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .split {
+    grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .split.balanced {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .eyebrow {
   font-size: 0.65rem;
   text-transform: uppercase;
