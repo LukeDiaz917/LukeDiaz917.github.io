@@ -331,6 +331,12 @@ button:focus-visible {
   object-fit: cover;
 }
 
+.service-card video {
+  width: 100%;
+  display: block;
+  border-radius: calc(var(--radius) - 4px);
+}
+
 .service-card figcaption {
   font-size: var(--step--1);
   color: var(--ink-soft);
